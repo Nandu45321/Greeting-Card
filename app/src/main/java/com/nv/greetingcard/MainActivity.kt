@@ -29,6 +29,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -41,6 +43,7 @@ import com.nv.greetingcard.ui.NavRoutes
 import com.nv.greetingcard.ScreenOne
 import com.nv.greetingcard.ScreenTwo
 import com.nv.greetingcard.ScreenThree
+import com.nv.greetingcard.BusinessCard
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +78,9 @@ fun AppNavigation() {
         composable(NavRoutes.SCREEN_THREE) {
             ScreenThree(navController = navController) // Call the new composable
         }
+        composable(NavRoutes.SCREEN_FOUR) {
+            BusinessCard(navController = navController) // Call the new composable
+        }
     }
 }
 
@@ -88,7 +94,7 @@ fun MainScreen(navController: androidx.navigation.NavController) {
                 actions = {
                     IconButton(onClick = { navController.navigate(NavRoutes.SCREEN_ONE) }) {
                         Icon(
-                            imageVector = Icons.Filled.ArrowForward, // Using a built-in icon
+                            imageVector = Icons.AutoMirrored.Filled.ArrowForward, // Using a built-in icon
                             contentDescription = "Next Screen"
                         )
                     }
@@ -125,7 +131,7 @@ fun EmptyScreen(
                     if (previousRoute != null) { // Show back button if there's a previous screen
                         IconButton(onClick = { navController.popBackStack() }) { // Or navController.navigate(previousRoute) with popUpTo logic
                             Icon(
-                                imageVector = Icons.Filled.ArrowBack,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = "Back"
                             )
                         }
@@ -135,7 +141,7 @@ fun EmptyScreen(
                     if (nextRoute != null) { // Show forward button if there's a next screen
                         IconButton(onClick = { navController.navigate(nextRoute) }) {
                             Icon(
-                                imageVector = Icons.Filled.ArrowForward,
+                                imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                                 contentDescription = "Next Screen"
                             )
                         }
@@ -170,13 +176,13 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
     ) {
         Text(
             text = message,
-            fontSize = 90.sp,
+            fontSize = 72.sp,
             lineHeight = 116.sp,
             textAlign = TextAlign.Center
         )
         Text(
             text = from,
-            fontSize = 36.sp,
+            fontSize = 28.sp,
             modifier = Modifier
                 .padding(16.dp)
                 .align(alignment = Alignment.CenterHorizontally)
